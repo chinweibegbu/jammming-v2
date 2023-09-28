@@ -7,10 +7,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.App button {
-  width: auto;
-}
-
 .TitleBar {
   height: 5vh;
   min-height: 25px;
@@ -23,6 +19,10 @@
 
 .SearchSection input {
   width: 50%;
+}
+
+.SearchSection .app-button {
+  width: auto;
 }
 
 .InteractionSection {
@@ -43,6 +43,22 @@
 
 .Tracklist {
   background-color: lightblue;
+  height: 90%;
+  overflow-y: scroll;
+}
+
+.Tracklist::-webkit-scrollbar {
+  width: 10px;
+}
+ 
+.Tracklist::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: rgba(165, 165, 165, 0);
+}
+
+.Tracklist::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: rgb(255,255,255,0.8);
 }
 
 .Track i {

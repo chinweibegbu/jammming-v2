@@ -2,11 +2,11 @@ import React from "react";
 import SearchResults from "./SearchResults";
 import Playlist from "./Playlist";
 
-function InteractionSection() {
-    return ( 
+function InteractionSection({ searchResults, playlist, setPlaylist }) {
+    return (
         <div className="InteractionSection row border border-black">
-            <SearchResults />
-            <Playlist />
+            <SearchResults searchResults={searchResults} setPlaylist={setPlaylist} />
+            <Playlist playlist={playlist} setPlaylist={setPlaylist} />
         </div>
     );
 }
