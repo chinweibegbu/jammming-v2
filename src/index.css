@@ -1,4 +1,4 @@
-body {
+.App {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -7,7 +7,45 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.App button {
+  width: auto;
+}
+
+.TitleBar {
+  height: 5vh;
+  min-height: 25px;
+}
+
+.SearchSection {
+  height: 10vh;
+  min-height: 80px;
+}
+
+.SearchSection input {
+  width: 50%;
+}
+
+.InteractionSection {
+  height: 85vh;
+}
+
+.InteractionSection .SearchResults {
+  border: solid 1px black;
+  height: 100%;
+  background-color: grey;
+}
+
+.InteractionSection .Playlist {
+  border: solid 1px black;
+  height: 100%;
+  background-color: lightgrey;
+}
+
+.Tracklist {
+  background-color: lightblue;
+}
+
+.Track i {
+  cursor: pointer;
+  font-size: xx-large;
 }
