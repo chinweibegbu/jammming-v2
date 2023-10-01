@@ -54,6 +54,12 @@ input[type=submit]:hover {
   background-size: cover;
 }
 
+@media screen and (max-width: 768px) {
+  .App {
+    height: 180vh;
+  }
+}
+
 .TitleBar {
   height: 5vh;
   min-height: 25px;
