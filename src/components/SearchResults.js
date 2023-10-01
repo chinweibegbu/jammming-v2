@@ -7,7 +7,7 @@ function SearchResults({ searchResults, setPlaylist }) {
         const response = await fetch("https://api.spotify.com/v1/tracks/" + id, {
             method: 'get',
             headers: new Headers({
-                "Authorization": "Bearer BQAUk-qkUo5lGLNWXswBCqmfq4wn3NeEW1VyMNGqQ0owb-qFxTv2gN5F9barldkGnYbxACYjaXB97iUDsg9Ra1ZMdz10-3JM5UPUKIp2jKx9y2NqMaM"
+                "Authorization": "Bearer BQAaY8ywyv95DamfWcskjYjsYp_PmwE-lop1z-TkRC7r5V1G8EjXl7X2kKb7ML4T9RdqD_hWnVa7EvhnKmo7T_Ml5yImOqwfSEgRvFLruhSco7c1pxs"
             })
         });
         const addedTrack = await response.json();

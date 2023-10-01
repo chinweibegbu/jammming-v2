@@ -1,5 +1,4 @@
 import React from "react";
-// import data from '../data';
 
 function SearchSection({ searchTerm, setSearchTerm, setSearchResults }) {
     const handleChange = (event) => {
@@ -7,17 +6,14 @@ function SearchSection({ searchTerm, setSearchTerm, setSearchResults }) {
     }
     const handleSearchSubmit = async (event) => {
         event.preventDefault();
-        // console.log("form submitting");
         try {
             const response = await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
                 method: 'get',
                 headers: new Headers({
-                    "Authorization": "Bearer BQAUk-qkUo5lGLNWXswBCqmfq4wn3NeEW1VyMNGqQ0owb-qFxTv2gN5F9barldkGnYbxACYjaXB97iUDsg9Ra1ZMdz10-3JM5UPUKIp2jKx9y2NqMaM"
+                    "Authorization": "Bearer BQAaY8ywyv95DamfWcskjYjsYp_PmwE-lop1z-TkRC7r5V1G8EjXl7X2kKb7ML4T9RdqD_hWnVa7EvhnKmo7T_Ml5yImOqwfSEgRvFLruhSco7c1pxs"
                 })
             });
             const data = await response.json();
-            // setPlaylist(playlist => playlist.concat([addedTrack]));
-
             setSearchResults(data);
         } catch (e) {
             console.log(e.message);
