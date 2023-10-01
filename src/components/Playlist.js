@@ -37,9 +37,9 @@ function Playlist({ playlist, setPlaylist }) {
     return (
         <div className="Playlist col-md-6">
             <form onSubmit={handlePlaylistSubmit} className="w-100 d-flex flex-column align-items-center">
-                <input className="w-100" type="text" value={playlistName} onChange={handleChange} placeholder="Playlist Name" />
+                <input className="w-100" type="text" value={playlistName} onChange={handleChange} placeholder="Enter playlist name" />
                 <Tracklist playlist={playlist} clickHandler={handleRemoval} />
-                <input type="submit" value="SAVE TO SPOTIFY" className="app-button" />
+                <input type="submit" value="SAVE TO SPOTIFY" />
             </form>
         </div>
     );

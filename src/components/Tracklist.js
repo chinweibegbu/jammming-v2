@@ -8,8 +8,8 @@ function Tracklist({ searchResults = {}, playlist, clickHandler }) {
                 clickHandler.name === "handleAddition" &&
                 Object.keys(searchResults).length > 0 &&
                 (("tracks" in searchResults) === false) &&
-                <div className="h-100 d-flex flex-column align-items-center justify-content-center ">
-                    <h4>Access Token has Expired or is Incorrect</h4>
+                <div className="error-div h-100 d-flex flex-column align-items-center justify-content-center ">
+                    <h5>Access Token has Expired or is Incorrect</h5>
                     <p>Send email to chinwe.ibegbu@gmail.com</p>
                 </div>
             }

@@ -2,6 +2,12 @@ Bootstrap:
 * https://hackerthemes.com/bootstrap-cheatsheet/
 * https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css
 * https://icons.getbootstrap.com/
+* https://stackoverflow.com/questions/18738712/how-to-add-spacing-between-columns
+
+CSS:
+* https://www.w3schools.com/css/css3_variables.asp
+* https://www.geeksforgeeks.org/how-to-apply-no-shadow-in-an-element-using-css/
+* https://www.w3schools.com/cssref/sel_placeholder.php
 
 fetch() API:
 * https://stackoverflow.com/questions/41369497/passing-a-function-with-parameters-through-props-on-reactjs
@@ -13,3 +19,4 @@ Random:
 * https://legacy.reactjs.org/docs/conditional-rendering.html
 * https://stackoverflow.com/questions/33682774/how-to-access-the-key-property-from-a-reactjs-component
 * https://www.geeksforgeeks.org/how-to-check-a-key-exists-in-javascript-object/
+* https://blog.hubspot.com/website/web-safe-html-css-fonts

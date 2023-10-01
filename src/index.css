@@ -1,67 +1,147 @@
+:root {
+  --main: #C99666;
+  --main-opaque: #c99666;
+  --lighter: #f0bf91;
+}
+
+input[type=text] {
+  width: 50%;
+
+  border: 1px solid var(--lighter);
+  border-radius: 8px;
+  padding: 5px 10px
+}
+
+input[type=text]:focus {
+  outline: none;
+}
+
+input[type=text]::placeholder {
+  color: lightgray;
+  font-style: italic;
+}
+
+input[type=submit] {
+  border: none;
+  border-radius: 10px;
+  box-shadow: none;
+
+  width: auto;
+  margin-top: 10px;
+  padding: 8px 13px;
+
+  background-color: var(--lighter);
+  color: white;
+  font-size: 12px;
+}
+
+input[type=submit]:hover {
+  cursor: pointer;
+  background-color: var(--main);
+  color: white;
+}
+
 .App {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Trebuchet MS', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-image: url('./images/background-gold.jpg');
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .TitleBar {
   height: 5vh;
   min-height: 25px;
+
+  text-align: left;
+  color: white;
+  background-color: var(--main-opaque);
+  font-family: "Arial Black";
+  font-size: large;
+  font-weight: bolder;
 }
 
 .SearchSection {
-  height: 10vh;
+  height: 15vh;
   min-height: 80px;
+  padding-top: 20px;
 }
 
-.SearchSection input {
-  width: 50%;
-}
-
-.SearchSection .app-button {
-  width: auto;
+.SearchSection input[type=text] {
+  text-align: center;
 }
 
 .InteractionSection {
-  height: 85vh;
+  height: 80vh;
 }
 
-.InteractionSection .SearchResults {
-  border: solid 1px black;
+.InteractionSection > * {
   height: 100%;
-  background-color: grey;
-}
+  background-color: rgb(255, 255, 255, 0.8);
+  padding: 10px;
 
-.InteractionSection .Playlist {
-  border: solid 1px black;
-  height: 100%;
-  background-color: lightgrey;
+  box-sizing: border-box;
+  border: 20px solid transparent;
+  background-clip: padding-box;
 }
 
 .Tracklist {
-  background-color: lightblue;
   height: 90%;
   overflow-y: scroll;
+  padding: 0px 5px;
 }
 
 .Tracklist::-webkit-scrollbar {
   width: 10px;
 }
- 
+
 .Tracklist::-webkit-scrollbar-track {
   border-radius: 8px;
-  background-color: rgba(165, 165, 165, 0);
+  background-color: rgba(255, 255, 255, 0);
 }
 
 .Tracklist::-webkit-scrollbar-thumb {
   border-radius: 8px;
-  background-color: rgb(255,255,255,0.8);
+  background-color: #f0bf91;
+}
+
+.Playlist .Tracklist {
+  margin-top: 10px;
+}
+
+.Track {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 15px;
+}
+
+.Track .track-name {
+  margin: 0;
+  font-weight: 200;
+}
+
+.Track .track-details {
+  font-size: small;
+  margin-bottom: 0;
 }
 
 .Track i {
   cursor: pointer;
   font-size: xx-large;
+  color: darkgray;
+}
+
+.Track i:hover {
+  cursor: pointer;
+  font-size: xx-large;
+  color: black;
+}
+
+.error-div {
+  text-align: center;
+  font-style: italic;
 }
