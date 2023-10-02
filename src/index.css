@@ -1,6 +1,5 @@
 :root {
   --main: #C99666;
-  --main-opaque: #c99666;
   --lighter: #f0bf91;
 }
 
@@ -64,7 +63,7 @@ input[type=submit]:hover {
 .TitleBar {
   height: 5vh;
   min-height: 25px;
-  background-color: var(--main-opaque);
+  background-color: var(--main);
 }
 
 .TitleBar > p {
@@ -126,12 +125,12 @@ input[type=submit]:hover {
 
 .Tracklist::-webkit-scrollbar-track {
   border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: transparent;
 }
 
 .Tracklist::-webkit-scrollbar-thumb {
   border-radius: 8px;
-  background-color: #f0bf91;
+  background-color: var(--lighter);
 }
 
 .Playlist .Tracklist {
