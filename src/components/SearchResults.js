@@ -17,7 +17,7 @@ function SearchResults({ searchResults, setPlaylist }) {
     }
 
     return (
-        <div className="SearchResults col-md-6">
+        <div className="SearchResults col-md-6 col-lg-5 offset-lg-1 col-xl-4 offset-xl-2">
             <h4>Results</h4>
             {
                 Object.keys(searchResults).length > 0 &&

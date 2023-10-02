@@ -76,7 +76,7 @@ function Playlist({ playlist, setPlaylist }) {
     };
 
     return (
-        <div className="Playlist col-md-6">
+        <div className="Playlist col-md-6 col-lg-5 col-xl-4">
             <form onSubmit={handlePlaylistSubmit} className="w-100 d-flex flex-column align-items-center">
                 <input className="w-100" type="text" value={playlistName} onChange={handleChange} placeholder="Enter playlist name" />
                 <Tracklist playlist={playlist} clickHandler={handleRemoval} />
