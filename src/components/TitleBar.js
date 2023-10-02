@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const CLIENT_ID = "4b6b77218b64431a84704d60509f7b5b";
 const REDIRECT_URI = "http://localhost:3000/";
@@ -19,25 +19,51 @@ const getReturnedParamsFromSpotifyAuth = (hash) => {
 }
 
 function TitleBar() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [username, setUsername] = useState("User");
+
     useEffect(() => {
-        if (window.location.hash) {
-            const { access_token, token_type, expires_in } = getReturnedParamsFromSpotifyAuth(window.location.hash);
-            
-            localStorage.clear();
-            localStorage.setItem("accessToken", access_token);
-            localStorage.setItem("tokenType", token_type);
-            localStorage.setItem("expiresIn", expires_in);
+        async function setUser() {
+            if (window.location.hash) {
+                const { access_token, token_type, expires_in } = getReturnedParamsFromSpotifyAuth(window.location.hash);
+    
+                localStorage.clear();
+                localStorage.setItem("accessToken", access_token);
+                localStorage.setItem("tokenType", token_type);
+                localStorage.setItem("expiresIn", expires_in);
+    
+                try {
+                    const accessToken = localStorage.getItem('accessToken');
+                    const userResponse = await fetch(`https://api.spotify.com/v1/me`, {
+                        method: 'get',
+                        headers: new Headers({
+                            "Authorization": `Bearer ${accessToken}`
+                        })
+                    });
+                    const userData = await userResponse.json();
+                    setUsername(userData.display_name);
+                } catch (e) {
+                    console.log(e.message);
+                }
+    
+                setIsLoggedIn(true);
+            }
         }
+
+        setUser();
     });
 
     const handleLogin = () => {
         window.location = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${SCOPES_URL}&response_type=token&show_dialog=true`;
     }
 
+    const loggedInDisplay = <p>Signed in as {username}</p>;
+    const notLoggedInDisplay = <button onClick={handleLogin}>Log In</button>;
+
     return (
         <div className="TitleBar row-flex d-flex align-items-center justify-content-between pe-3 ps-3">
-            <p>JAMMMMING</p>
-            <button onClick={handleLogin}>Log In</button>
+            <p className="title-name">JAMMMMING</p>
+            {isLoggedIn ? loggedInDisplay : notLoggedInDisplay }
         </div>
     );
 }

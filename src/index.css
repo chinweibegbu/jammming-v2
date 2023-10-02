@@ -70,6 +70,10 @@ input[type=submit]:hover {
 .TitleBar > p {
   margin: 0;
   color: white;
+  font-size: 12px;
+}
+
+.TitleBar > p.title-name {
   font-family: "Arial Black";
   font-size: large;
   font-weight: bolder;
