@@ -14,17 +14,27 @@ function Playlist({ playlist, setPlaylist }) {
         // console.log(id + " deleted")
     }
     const handlePlaylistSubmit = async (event) => {
+        // Prevent the form's default action
         event.preventDefault();
-        const post_body = {
+        
+        // Get the user's access token
+        const accessToken = localStorage.getItem('accessToken');
+
+        // Organise request body content
+        const playlistCreationBody = {
             name: playlistName
         };
-        const access_token = localStorage.getItem('accessToken');
+        const trackURIs = playlist.map(track => track.uri);
+        const playlistAdditionBody = {
+            uris: trackURIs
+        }
+
         try {
             // Get user_id
             const userResponse = await fetch(`https://api.spotify.com/v1/me`, {
                 method: 'get',
                 headers: new Headers({
-                    "Authorization": `Bearer ${access_token}`
+                    "Authorization": `Bearer ${accessToken}`
                 })
             });
             const userData = await userResponse.json();
@@ -34,23 +44,35 @@ function Playlist({ playlist, setPlaylist }) {
             const creationResponse = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
                 method: 'post',
                 headers: new Headers({
-                    "Authorization": `Bearer ${access_token}`
+                    "Authorization": `Bearer ${accessToken}`
                 }),
-                body: JSON.stringify(post_body)
+                body: JSON.stringify(playlistCreationBody)
             });
             const creationData = await creationResponse.json();
             const playlistId = creationData.id;
 
             console.log(`Created playlist ID: ${playlistId}`);
+
+            let tracks = "";
+            playlist.forEach(track => {
+                tracks = tracks + track.uri + " "
+            });
+            console.log(`Playlist {${playlistName}}: ${tracks}`);
+
+            // Add to playlist
+            const additionResponse = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+                method: 'post',
+                headers: new Headers({
+                    "Authorization": `Bearer ${accessToken}`
+                }),
+                body: JSON.stringify(playlistAdditionBody)
+            });
+            const additionData = await additionResponse.json();
+            console.log(additionData);
+
         } catch (e) {
             console.log(e.message);
         }
-
-        // let tracks = "";
-        // playlist.forEach(track => {
-        //    tracks = tracks + track.id + " "
-        // });
-        // console.log(`Playlist {${playlistName}}: ${tracks}`);
     };
 
     return (

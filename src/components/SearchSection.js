@@ -6,11 +6,13 @@ function SearchSection({ searchTerm, setSearchTerm, setSearchResults }) {
     }
     const handleSearchSubmit = async (event) => {
         event.preventDefault();
+        const accessToken = localStorage.getItem('accessToken');
+
         try {
             const response = await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
                 method: 'get',
                 headers: new Headers({
-                    "Authorization": "Bearer BQAaY8ywyv95DamfWcskjYjsYp_PmwE-lop1z-TkRC7r5V1G8EjXl7X2kKb7ML4T9RdqD_hWnVa7EvhnKmo7T_Ml5yImOqwfSEgRvFLruhSco7c1pxs"
+                    "Authorization": `Bearer ${accessToken}`
                 })
             });
             const data = await response.json();

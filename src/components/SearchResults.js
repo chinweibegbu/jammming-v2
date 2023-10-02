@@ -4,10 +4,11 @@ import Tracklist from "./Tracklist";
 
 function SearchResults({ searchResults, setPlaylist }) {
     const handleAddition = async (id) => {
-        const response = await fetch("https://api.spotify.com/v1/tracks/" + id, {
+        const accessToken = localStorage.getItem('accessToken');
+        const response = await fetch(`https://api.spotify.com/v1/tracks/${id}`, {
             method: 'get',
             headers: new Headers({
-                "Authorization": "Bearer BQAaY8ywyv95DamfWcskjYjsYp_PmwE-lop1z-TkRC7r5V1G8EjXl7X2kKb7ML4T9RdqD_hWnVa7EvhnKmo7T_Ml5yImOqwfSEgRvFLruhSco7c1pxs"
+                "Authorization": `Bearer ${accessToken}`
             })
         });
         const addedTrack = await response.json();
