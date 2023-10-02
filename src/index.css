@@ -33,6 +33,7 @@ input[type=submit] {
   background-color: var(--lighter);
   color: white;
   font-size: 12px;
+  font-weight: bold;
 }
 
 input[type=submit]:hover {
@@ -63,14 +64,27 @@ input[type=submit]:hover {
 .TitleBar {
   height: 5vh;
   min-height: 25px;
-
-  text-align: left;
-  color: white;
   background-color: var(--main-opaque);
+}
+
+.TitleBar > p {
+  margin: 0;
+  color: white;
   font-family: "Arial Black";
   font-size: large;
   font-weight: bolder;
 }
+
+.TitleBar > button {
+  font-size: small;
+  color: white;
+
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+  font-weight:lighter
+}
+
 
 .SearchSection {
   height: 15vh;

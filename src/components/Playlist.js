@@ -15,23 +15,42 @@ function Playlist({ playlist, setPlaylist }) {
     }
     const handlePlaylistSubmit = async (event) => {
         event.preventDefault();
-        // try {
-        //     const response = await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
-        //         method: 'get',
-        //         headers: new Headers({
-        //             "Authorization": "Bearer BQDfFF4dxUB0DPrfOIHrkpg6osGgWBgcoczAdJbJh7MvDlsz_9eBkv71W7UZbS1jpX7LYurKChQ9ZgAAv9I0qrlrlauCIVPQNqcOOSBnx2LHEUFWMDw"
-        //         })
-        //     });
-        //     const data = await response.json();
-        //     setPlaylist(data);
-        // } catch (e) {
-        //     console.log(e.message);
-        // }
-        let tracks = "";
-        playlist.forEach(track => {
-           tracks = tracks + track.id + " "
-        });
-        console.log(`Playlist {${playlistName}}: ${tracks}`);
+        const post_body = {
+            name: playlistName
+        };
+        const access_token = localStorage.getItem('accessToken');
+        try {
+            // Get user_id
+            const userResponse = await fetch(`https://api.spotify.com/v1/me`, {
+                method: 'get',
+                headers: new Headers({
+                    "Authorization": `Bearer ${access_token}`
+                })
+            });
+            const userData = await userResponse.json();
+            const userId = userData.id;
+
+            // Create playlist
+            const creationResponse = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+                method: 'post',
+                headers: new Headers({
+                    "Authorization": `Bearer ${access_token}`
+                }),
+                body: JSON.stringify(post_body)
+            });
+            const creationData = await creationResponse.json();
+            const playlistId = creationData.id;
+
+            console.log(`Created playlist ID: ${playlistId}`);
+        } catch (e) {
+            console.log(e.message);
+        }
+
+        // let tracks = "";
+        // playlist.forEach(track => {
+        //    tracks = tracks + track.id + " "
+        // });
+        // console.log(`Playlist {${playlistName}}: ${tracks}`);
     };
 
     return (

@@ -1,9 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+const CLIENT_ID = "4b6b77218b64431a84704d60509f7b5b";
+const REDIRECT_URI = "http://localhost:3000/";
+const SCOPES = ["playlist-modify-public", "playlist-modify-private", "user-read-private", "user-read-email"];
+const SCOPES_URL = SCOPES.join("%20");
+
+// Sample URL after authorisation: http://localhost:3000/#access_token=BQBxVwQwDnObxM-3fSPAsPWPuyOM_pjO8D_9hFsUf3314a60DDDmMX3LUfuj6TiNhLO5FhjKSy5EtS_JLBXGHTcT5iYLY9bGwCQHoWB3iJIZWEUycui78amkYepJXDuQHgx771LLdXaDas9oqFCT8ZLzurkW0BFkBtF_IEpmEJar-kn7Kc8JL2FhbwFmUhpfpQvAP69zPwN9yWOdUsi1ayI7YupeCjsNzY2jp_fwkUa9rrL_ZzLeYUxc1o-lFmB6&token_type=Bearer&expires_in=3600
+const getReturnedParamsFromSpotifyAuth = (hash) => {
+    const stringAfterHashtag = hash.substring(1);
+    const paramsInUrl = stringAfterHashtag.split("&");
+    const paramsSplitUp = paramsInUrl.reduce((accumulator, currentValue) => {
+        const [key, value] = currentValue.split("=");
+        accumulator[key] = value;
+        return accumulator;
+    }, {});
+
+    return paramsSplitUp;
+}
 
 function TitleBar() {
+    useEffect(() => {
+        if (window.location.hash) {
+            const { access_token, token_type, expires_in } = getReturnedParamsFromSpotifyAuth(window.location.hash);
+            
+            localStorage.clear();
+            localStorage.setItem("accessToken", access_token);
+            localStorage.setItem("tokenType", token_type);
+            localStorage.setItem("expiresIn", expires_in);
+        }
+    });
+
+    const handleLogin = () => {
+        window.location = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${SCOPES_URL}&response_type=token&show_dialog=true`;
+    }
+
     return (
-        <div className="TitleBar row-flex d-flex justify-content-center align-items-center">
-            JAMMMING
+        <div className="TitleBar row-flex d-flex align-items-center justify-content-between pe-3 ps-3">
+            <p>JAMMMMING</p>
+            <button onClick={handleLogin}>Log In</button>
         </div>
     );
 }
