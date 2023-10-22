@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 
+// Login handling variables
 const CLIENT_ID = "4b6b77218b64431a84704d60509f7b5b";
 const REDIRECT_URI = "https://jammming-v2-lsd56uydi-chinwe-ibegbus-projects.vercel.app/";
 const SCOPES = ["playlist-modify-public", "playlist-modify-private", "user-read-private", "user-read-email"];
